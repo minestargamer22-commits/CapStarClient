@@ -10,7 +10,7 @@ repositories {
 }
 
 dependencies {
-    // برای نسخه 1.8.9 Forge
+    implementation 'org.lwjgl.lwjgl:lwjgl:2.9.3'
 }
 
 jar {
