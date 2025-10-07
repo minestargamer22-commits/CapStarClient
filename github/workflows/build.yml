@@ -1,0 +1,27 @@
+name: Build CapStar Client
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+    - name: Set up Java 8
+      uses: actions/setup-java@v4
+      with:
+        java-version: '8'
+        distribution: 'temurin'
+    - name: Build with Gradle
+      run: |
+        chmod +x ./gradlew || true
+        ./gradlew build --no-daemon
+    - name: Upload JAR
+      uses: actions/upload-artifact@v4
+      with:
+        name: capstar-client
+        path: build/libs/*.jar
